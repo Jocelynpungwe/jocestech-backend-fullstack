@@ -10,7 +10,7 @@ const {
 } = require('../controllers/userController')
 const authenticationMiddleware = require('../middleware/authentication')
 const authorizeMiddleware = require('../middleware/authorize')
-
+const testUserMiddleware = require('../middleware/testUser')
 router.get(
   '/',
   authenticationMiddleware,
@@ -18,10 +18,16 @@ router.get(
   getAllUsers
 )
 router.get('/showMe', authenticationMiddleware, showCurrentUser)
-router.patch('/updateUser', authenticationMiddleware, updateUser)
+router.patch(
+  '/updateUser',
+  authenticationMiddleware,
+  testUserMiddleware,
+  updateUser
+)
 router.patch(
   '/updateUserPassword',
   authenticationMiddleware,
+  testUserMiddleware,
   updateUserPassword
 )
 router.get('/:id', authenticationMiddleware, getSingleUser)

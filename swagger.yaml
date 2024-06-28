@@ -1,0 +1,1111 @@
+openapi: 3.0.0
+info:
+  title: FULLSTACK JOCESTECH
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://jocestech-backend-fullstack.onrender.com/api/v1
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - auth
+      summary: register
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/registerrequest'
+                - example:
+                    name: new name
+                    email: name@example.com
+                    password: password
+            example:
+              name: new name
+              email: name@example.com
+              password: password
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: login
+      operationId: login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/loginrequest'
+                - example:
+                    email: name@example.com
+                    password: password
+            example:
+              email: name@example.com
+              password: password
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/loginAdmin:
+    post:
+      tags:
+        - auth
+      summary: login admin
+      operationId: loginadmin
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/loginadminrequest'
+                - example:
+                    email: test@gmail.com
+                    password: testPassword
+            example:
+              email: test@gmail.com
+              password: testPassword
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/logout:
+    get:
+      tags:
+        - auth
+      summary: logout
+      operationId: logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /user:
+    get:
+      tags:
+        - user
+      summary: get all user
+      operationId: getalluser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the users id
+    get:
+      tags:
+        - user
+      summary: get single user
+      operationId: getsingleuser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /user/showMe:
+    get:
+      tags:
+        - user
+      summary: show me
+      operationId: showme
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /user/updateUser:
+    patch:
+      tags:
+        - user
+      summary: update user
+      operationId: updateuser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/updateuserrequest'
+                - example:
+                    name: name smith
+                    email: name@gmail.com
+            example:
+              name: name smith
+              email: name@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /user/updateUserPassword:
+    patch:
+      tags:
+        - user
+      summary: update user password
+      operationId: updateuserpassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/updateuserpasswordrequest'
+                - example:
+                    oldPassword: oldPassword
+                    newPassword: newPassword
+            example:
+              oldPassword: oldPassword
+              newPassword: newPassword
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products:
+    get:
+      tags:
+        - products
+      summary: get all products
+      operationId: getallproducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - products
+      summary: create product
+      operationId: createproduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/createproductrequest'
+                - example:
+                    features: Computers, game consoles, headphones, laptops, speakers, and phones share several common features that enhance functionality and connectivity. These include various connectivity options like Bluetooth, Wi-Fi, USB ports, and 3.5mm audio jacks. They all possess audio capabilities such as built-in speakers and microphones, and processing power through CPUs, GPUs, and RAM for multitasking and performance. Display and graphics support, user interfaces with operating systems, and touch controls are prevalent. Portability is ensured with battery power and lightweight designs. Internal and expandable storage, smart features like voice assistants, and app ecosystems enhance user experience. Network capabilities for internet access and streaming, along with inter-device synchronization and peripheral support, further integrate these devices into a cohesive technological ecosystem.
+                    box:
+                      - 1x Device Unit
+                      - 1x User Manual
+                      - 1x Documenation Warranty
+                      - 1x USB Cable
+                      - 1x Travel Bag
+                    name: test product
+                    price: 25999
+                    description: Experience the pinnacle of modern technology with the Apple iPhone X. Its stunning all-screen design, powered by the A11 Bionic chip, offers seamless performance and a vibrant 5.8-inch Super Retina display. Unlock with ease using Face ID, capture stunning moments with dual 12MP cameras, and explore limitless possibilities with augmented reality. Join the revolution in smartphone technology with the iPhone X – where elegance meets unparalleled functionality.
+                    image:
+                      - /uploads/no-product-image.jpeg
+                    category: phones
+                    company: apple
+                    colors:
+                      - '#000000'
+                      - '#14213d'
+                      - '#4a5759'
+                      - '#6c757d'
+                    featured: false
+                    freeShipping: false
+                    inventory: 15
+                    createdAt: 2024-05-22T10:04:12.401Z
+                    updatedAt: 2024-06-04T00:10:50.748Z
+            example:
+              features: Computers, game consoles, headphones, laptops, speakers, and phones share several common features that enhance functionality and connectivity. These include various connectivity options like Bluetooth, Wi-Fi, USB ports, and 3.5mm audio jacks. They all possess audio capabilities such as built-in speakers and microphones, and processing power through CPUs, GPUs, and RAM for multitasking and performance. Display and graphics support, user interfaces with operating systems, and touch controls are prevalent. Portability is ensured with battery power and lightweight designs. Internal and expandable storage, smart features like voice assistants, and app ecosystems enhance user experience. Network capabilities for internet access and streaming, along with inter-device synchronization and peripheral support, further integrate these devices into a cohesive technological ecosystem.
+              box:
+                - 1x Device Unit
+                - 1x User Manual
+                - 1x Documenation Warranty
+                - 1x USB Cable
+                - 1x Travel Bag
+              name: test product
+              price: 25999
+              description: Experience the pinnacle of modern technology with the Apple iPhone X. Its stunning all-screen design, powered by the A11 Bionic chip, offers seamless performance and a vibrant 5.8-inch Super Retina display. Unlock with ease using Face ID, capture stunning moments with dual 12MP cameras, and explore limitless possibilities with augmented reality. Join the revolution in smartphone technology with the iPhone X – where elegance meets unparalleled functionality.
+              image:
+                - /uploads/no-product-image.jpeg
+              category: phones
+              company: apple
+              colors:
+                - '#000000'
+                - '#14213d'
+                - '#4a5759'
+                - '#6c757d'
+              featured: false
+              freeShipping: false
+              inventory: 15
+              createdAt: 2024-05-22T10:04:12.401Z
+              updatedAt: 2024-06-04T00:10:50.748Z
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the users id
+    get:
+      tags:
+        - products
+      summary: get single product
+      operationId: getsingleproduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - products
+      summary: update product
+      operationId: updateproduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/updateproductrequest'
+                - example:
+                    features: Computers, game consoles, headphones, laptops, speakers, and phones share several common features that enhance functionality and connectivity. These include various connectivity options like Bluetooth, Wi-Fi, USB ports, and 3.5mm audio jacks. They all possess audio capabilities such as built-in speakers and microphones, and processing power through CPUs, GPUs, and RAM for multitasking and performance. Display and graphics support, user interfaces with operating systems, and touch controls are prevalent. Portability is ensured with battery power and lightweight designs. Internal and expandable storage, smart features like voice assistants, and app ecosystems enhance user experience. Network capabilities for internet access and streaming, along with inter-device synchronization and peripheral support, further integrate these devices into a cohesive technological ecosystem.
+                    box:
+                      - 1x Device Unit
+                      - 1x User Manual
+                      - 1x Documenation Warranty
+                      - 1x USB Cable
+                      - 1x Travel Bag
+                    name: test edited products
+                    price: 25999
+                    description: Experience the pinnacle of modern technology with the Apple iPhone X. Its stunning all-screen design, powered by the A11 Bionic chip, offers seamless performance and a vibrant 5.8-inch Super Retina display. Unlock with ease using Face ID, capture stunning moments with dual 12MP cameras, and explore limitless possibilities with augmented reality. Join the revolution in smartphone technology with the iPhone X – where elegance meets unparalleled functionality.
+                    image:
+                      - /uploads/no-product-image.jpeg
+                    category: phones
+                    company: apple
+                    colors:
+                      - '#000000'
+                      - '#14213d'
+                      - '#4a5759'
+                      - '#6c757d'
+                    featured: false
+                    freeShipping: false
+                    inventory: 15
+                    createdAt: 2024-05-22T10:04:12.401Z
+                    updatedAt: 2024-06-04T00:10:50.748Z
+            example:
+              features: Computers, game consoles, headphones, laptops, speakers, and phones share several common features that enhance functionality and connectivity. These include various connectivity options like Bluetooth, Wi-Fi, USB ports, and 3.5mm audio jacks. They all possess audio capabilities such as built-in speakers and microphones, and processing power through CPUs, GPUs, and RAM for multitasking and performance. Display and graphics support, user interfaces with operating systems, and touch controls are prevalent. Portability is ensured with battery power and lightweight designs. Internal and expandable storage, smart features like voice assistants, and app ecosystems enhance user experience. Network capabilities for internet access and streaming, along with inter-device synchronization and peripheral support, further integrate these devices into a cohesive technological ecosystem.
+              box:
+                - 1x Device Unit
+                - 1x User Manual
+                - 1x Documenation Warranty
+                - 1x USB Cable
+                - 1x Travel Bag
+              name: test edited products
+              price: 25999
+              description: Experience the pinnacle of modern technology with the Apple iPhone X. Its stunning all-screen design, powered by the A11 Bionic chip, offers seamless performance and a vibrant 5.8-inch Super Retina display. Unlock with ease using Face ID, capture stunning moments with dual 12MP cameras, and explore limitless possibilities with augmented reality. Join the revolution in smartphone technology with the iPhone X – where elegance meets unparalleled functionality.
+              image:
+                - /uploads/no-product-image.jpeg
+              category: phones
+              company: apple
+              colors:
+                - '#000000'
+                - '#14213d'
+                - '#4a5759'
+                - '#6c757d'
+              featured: false
+              freeShipping: false
+              inventory: 15
+              createdAt: 2024-05-22T10:04:12.401Z
+              updatedAt: 2024-06-04T00:10:50.748Z
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - products
+      summary: delete product
+      operationId: deleteproduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/review/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the product review id
+    get:
+      tags:
+        - products
+      summary: get single product review
+      operationId: getsingleproductreview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/uploadImage:
+    post:
+      tags:
+        - products
+      summary: upload product Image
+      operationId: uploadproductImage
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - images
+              type: object
+              properties:
+                images:
+                  type: string
+                  format: binary
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews:
+    get:
+      tags:
+        - reviews
+      summary: get all reviews
+      operationId: getallreviews
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - reviews
+      summary: create review
+      operationId: createreview
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/createreviewrequest'
+                - example:
+                    product: 664dc31c17780a551a945989
+                    rating: 5
+                    title: i love is product
+                    comment: this is the best product
+            example:
+              product: 664dc31c17780a551a945989
+              rating: 5
+              title: i love is product
+              comment: this is the best product
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the reviews id
+    get:
+      tags:
+        - reviews
+      summary: get single review
+      operationId: getsinglereview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - reviews
+      summary: update reviews
+      operationId: updatereviews
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/updatereviewsrequest'
+                - example:
+                    product: 664dc31c17780a551a945989
+                    rating: 4
+                    title: i love is product
+                    comment: this is the best product
+            example:
+              product: 664dc31c17780a551a945989
+              rating: 4
+              title: i love is product
+              comment: this is the best product
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - reviews
+      summary: delete reviews
+      operationId: deletereviews
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/user/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the reviews user id
+    get:
+      tags:
+        - reviews
+      summary: get single user review
+      operationId: getsingleuserreview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders:
+    get:
+      tags:
+        - order
+      summary: get all order
+      operationId: getallorder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - order
+      summary: create order
+      operationId: createorder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/createorderrequest'
+                - example:
+                    tax: 399
+                    shippingFee: 499
+                    items:
+                      - id: 664de4dd17780a551a9459aa#4a5759
+                        name: Sennheiser Momentum 3 Wireless
+                        color: '#4a5759'
+                        amount: 1
+                        image: /headphones/product-17-a.jpg
+                        price: 10000
+                        max: 24
+                        productId: 664de4dd17780a551a9459aa
+            example:
+              tax: 399
+              shippingFee: 499
+              items:
+                - id: 664de4dd17780a551a9459aa#4a5759
+                  name: Sennheiser Momentum 3 Wireless
+                  color: '#4a5759'
+                  amount: 1
+                  image: /headphones/product-17-a.jpg
+                  price: 10000
+                  max: 24
+                  productId: 664de4dd17780a551a9459aa
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/showAllMyOrders:
+    get:
+      tags:
+        - order
+      summary: show all my orders
+      operationId: showallmyorders
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/showOrderStat:
+    get:
+      tags:
+        - order
+      summary: show order stat
+      operationId: showorderstat
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/user/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the order user id
+    get:
+      tags:
+        - order
+      summary: get single user  order
+      operationId: getsingleuserorder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the order id
+    get:
+      tags:
+        - order
+      summary: get single order
+      operationId: getsingleorder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - order
+      summary: update order
+      operationId: updateorder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/updateorderrequest'
+                - example:
+                    paymentIntentId: random id
+                    address:
+                      line1: 443 random road
+                      city: Gatineau, Qc
+                      state: Qc
+                      postal_code: J8T 6K5
+            example:
+              paymentIntentId: random id
+              address:
+                line1: 443 random road
+                city: Gatineau, Qc
+                state: Qc
+                postal_code: J8T 6K5
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    registerrequest:
+      title: registerrequest
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: emily smith
+        email: emilysmith@gmail.com
+        password: secret
+    loginrequest:
+      title: loginrequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: emilysmith@gmail.com
+        password: secret
+    loginadminrequest:
+      title: loginadminrequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: test@gmail.com
+        password: secret
+    updateuserrequest:
+      title: updateuserrequest
+      required:
+        - name
+        - email
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      example:
+        name: test
+        email: test@gmail.com
+    updateuserpasswordrequest:
+      title: updateuserpasswordrequest
+      required:
+        - oldPassword
+        - newPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      example:
+        oldPassword: newSecret
+        newPassword: secret
+    createproductrequest:
+      title: createproductrequest
+      required:
+        - features
+        - box
+        - name
+        - price
+        - description
+        - image
+        - category
+        - company
+        - colors
+        - featured
+        - freeShipping
+        - inventory
+        - createdAt
+        - updatedAt
+      type: object
+      properties:
+        features:
+          type: string
+        box:
+          type: array
+          items:
+            type: string
+          description: ''
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        description:
+          type: string
+        image:
+          type: array
+          items:
+            type: string
+          description: ''
+        category:
+          type: string
+        company:
+          type: string
+        colors:
+          type: array
+          items:
+            type: string
+          description: ''
+        featured:
+          type: boolean
+        freeShipping:
+          type: boolean
+        inventory:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      example:
+        features: Computers, game consoles, headphones, laptops, speakers, and phones share several common features that enhance functionality and connectivity. These include various connectivity options like Bluetooth, Wi-Fi, USB ports, and 3.5mm audio jacks. They all possess audio capabilities such as built-in speakers and microphones, and processing power through CPUs, GPUs, and RAM for multitasking and performance. Display and graphics support, user interfaces with operating systems, and touch controls are prevalent. Portability is ensured with battery power and lightweight designs. Internal and expandable storage, smart features like voice assistants, and app ecosystems enhance user experience. Network capabilities for internet access and streaming, along with inter-device synchronization and peripheral support, further integrate these devices into a cohesive technological ecosystem.
+        box:
+          - 1x Device Unit
+          - 1x User Manual
+          - 1x Documenation Warranty
+          - 1x USB Cable
+          - 1x Travel Bag
+        name: test product
+        price: 25999
+        description: Experience the pinnacle of modern technology with the Apple iPhone X. Its stunning all-screen design, powered by the A11 Bionic chip, offers seamless performance and a vibrant 5.8-inch Super Retina display. Unlock with ease using Face ID, capture stunning moments with dual 12MP cameras, and explore limitless possibilities with augmented reality. Join the revolution in smartphone technology with the iPhone X – where elegance meets unparalleled functionality.
+        image:
+          - /uploads/no-product-image.jpeg
+        category: phones
+        company: apple
+        colors:
+          - '#000000'
+          - '#14213d'
+          - '#4a5759'
+          - '#6c757d'
+        featured: false
+        freeShipping: false
+        inventory: 15
+        createdAt: 2024-05-22T10:04:12.401Z
+        updatedAt: 2024-06-04T00:10:50.748Z
+    updateproductrequest:
+      title: updateproductrequest
+      required:
+        - features
+        - box
+        - name
+        - price
+        - description
+        - image
+        - category
+        - company
+        - colors
+        - featured
+        - freeShipping
+        - inventory
+        - createdAt
+        - updatedAt
+      type: object
+      properties:
+        features:
+          type: string
+        box:
+          type: array
+          items:
+            type: string
+          description: ''
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        description:
+          type: string
+        image:
+          type: array
+          items:
+            type: string
+          description: ''
+        category:
+          type: string
+        company:
+          type: string
+        colors:
+          type: array
+          items:
+            type: string
+          description: ''
+        featured:
+          type: boolean
+        freeShipping:
+          type: boolean
+        inventory:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      example:
+        features: Computers, game consoles, headphones, laptops, speakers, and phones share several common features that enhance functionality and connectivity. These include various connectivity options like Bluetooth, Wi-Fi, USB ports, and 3.5mm audio jacks. They all possess audio capabilities such as built-in speakers and microphones, and processing power through CPUs, GPUs, and RAM for multitasking and performance. Display and graphics support, user interfaces with operating systems, and touch controls are prevalent. Portability is ensured with battery power and lightweight designs. Internal and expandable storage, smart features like voice assistants, and app ecosystems enhance user experience. Network capabilities for internet access and streaming, along with inter-device synchronization and peripheral support, further integrate these devices into a cohesive technological ecosystem.
+        box:
+          - 1x Device Unit
+          - 1x User Manual
+          - 1x Documenation Warranty
+          - 1x USB Cable
+          - 1x Travel Bag
+        name: test edited products
+        price: 25999
+        description: Experience the pinnacle of modern technology with the Apple iPhone X. Its stunning all-screen design, powered by the A11 Bionic chip, offers seamless performance and a vibrant 5.8-inch Super Retina display. Unlock with ease using Face ID, capture stunning moments with dual 12MP cameras, and explore limitless possibilities with augmented reality. Join the revolution in smartphone technology with the iPhone X – where elegance meets unparalleled functionality.
+        image:
+          - /uploads/no-product-image.jpeg
+        category: phones
+        company: apple
+        colors:
+          - '#000000'
+          - '#14213d'
+          - '#4a5759'
+          - '#6c757d'
+        featured: false
+        freeShipping: false
+        inventory: 15
+        createdAt: 2024-05-22T10:04:12.401Z
+        updatedAt: 2024-06-04T00:10:50.748Z
+    createreviewrequest:
+      title: createreviewrequest
+      required:
+        - product
+        - rating
+        - title
+        - comment
+      type: object
+      properties:
+        product:
+          type: string
+        rating:
+          type: integer
+          format: int32
+        title:
+          type: string
+        comment:
+          type: string
+      example:
+        product: 664dc31c17780a551a945989
+        rating: 5
+        title: i love is product
+        comment: this is the best product
+    updatereviewsrequest:
+      title: updatereviewsrequest
+      required:
+        - product
+        - rating
+        - title
+        - comment
+      type: object
+      properties:
+        product:
+          type: string
+        rating:
+          type: integer
+          format: int32
+        title:
+          type: string
+        comment:
+          type: string
+      example:
+        product: 664dc31c17780a551a945989
+        rating: 4
+        title: i love is product
+        comment: this is the best product
+    createorderrequest:
+      title: createorderrequest
+      required:
+        - tax
+        - shippingFee
+        - items
+      type: object
+      properties:
+        tax:
+          type: integer
+          format: int32
+        shippingFee:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+      example:
+        tax: 399
+        shippingFee: 499
+        items:
+          - id: 664de4dd17780a551a9459aa#4a5759
+            name: Sennheiser Momentum 3 Wireless
+            color: '#4a5759'
+            amount: 1
+            image: /headphones/product-17-a.jpg
+            price: 10000
+            max: 24
+            productId: 664de4dd17780a551a9459aa
+    Item:
+      title: Item
+      required:
+        - id
+        - name
+        - color
+        - amount
+        - image
+        - price
+        - max
+        - productId
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        color:
+          type: string
+        amount:
+          type: integer
+          format: int32
+        image:
+          type: string
+        price:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        productId:
+          type: string
+      example:
+        id: 664de4dd17780a551a9459aa#4a5759
+        name: Sennheiser Momentum 3 Wireless
+        color: '#4a5759'
+        amount: 1
+        image: /headphones/product-17-a.jpg
+        price: 10000
+        max: 24
+        productId: 664de4dd17780a551a9459aa
+    updateorderrequest:
+      title: updateorderrequest
+      required:
+        - paymentIntentId
+        - address
+      type: object
+      properties:
+        paymentIntentId:
+          type: string
+        address:
+          allOf:
+            - $ref: '#/components/schemas/Address'
+            - {}
+      example:
+        paymentIntentId: random id
+        address:
+          line1: 443 random road
+          city: Gatineau, Qc
+          state: Qc
+          postal_code: J8T 6K5
+    Address:
+      title: Address
+      required:
+        - line1
+        - city
+        - state
+        - postal_code
+      type: object
+      properties:
+        line1:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postal_code:
+          type: string
+      example:
+        line1: 443 random road
+        city: Gatineau, Qc
+        state: Qc
+        postal_code: J8T 6K5
+    completeorderrequest:
+      title: completeorderrequest
+      required:
+        - status
+      type: object
+      properties:
+        status:
+          type: string
+      example:
+        status: delevered
+tags:
+  - name: auth
+  - name: user
+  - name: products
+  - name: reviews
+  - name: order

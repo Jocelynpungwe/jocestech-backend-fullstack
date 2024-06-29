@@ -46,11 +46,7 @@ app.use(
 
 app.use(express.json())
 app.use(helmet())
-app.use(
-  cors({
-    origin: '*', // Or specify your React app's domain, e.g., 'http://localhost:3000'
-  })
-)
+app.use(cors())
 app.use(xss())
 app.use(cookieParser(process.env.JWT_SECRET))
 
